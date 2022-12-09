@@ -17,7 +17,7 @@ fn main() {
         elves.push(item);
     
     }
-
+    let mut order_elves = vec![];
     // println!("{:?}",elves);
     //let elves = vec!["1000","2000","8000","","9000","10000","","50000"];
 
@@ -30,17 +30,20 @@ fn main() {
                 println!("value:{}",value);
                 temp = temp + value; 
                 if i == elves.len()-1 {
-
+                    order_elves.push(temp);
                     println!("max:{},temp:{}",max,temp);
                     if max < temp {
                         max = temp;
+                        
                     }
                 
                 }   
             },
             Err(_) => {
+                order_elves.push(temp);
                 if max < temp {
                     max = temp;
+                    
 
                     temp = 0;
                 }
@@ -49,6 +52,8 @@ fn main() {
                     temp =0;
                     continue;
                 }
+
+                
                 
             }
         
@@ -59,6 +64,11 @@ fn main() {
 
 
     println!("MaX:{}",max);
-
+    order_elves.sort();
+    println!("Order vec:{:?}", order_elves);
+    println!("Sum:{:?}", order_elves[order_elves.len()-3..order_elves.len()].to_vec().iter().sum::<i32>());
 
 }
+
+
+
